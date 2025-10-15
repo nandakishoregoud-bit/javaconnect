@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class EnvLoader {
     @PostConstruct
     public void loadEnv() {
-        Dotenv dotenv = Dotenv.load();
+        Dotenv dotenv = Dotenv.configure()
+                               .filename("db.env")  // specify your custom file
+                               .load();
         dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
     }
 }
