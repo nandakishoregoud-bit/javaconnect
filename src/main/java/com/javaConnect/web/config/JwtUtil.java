@@ -1,4 +1,4 @@
-package com.javaConnect.web.security;
+package com.javaConnect.web.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

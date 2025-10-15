@@ -1,4 +1,4 @@
-package com.javaConnect.web.security;
+package com.javaConnect.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

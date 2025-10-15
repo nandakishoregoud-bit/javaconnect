@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.javaConnect.web.config.JwtUtil;
 import com.javaConnect.web.dto.LoginRequest;
 import com.javaConnect.web.dto.UserDTO;
 import com.javaConnect.web.entity.User;
 import com.javaConnect.web.repository.UserRepository;
-import com.javaConnect.web.security.JwtUtil;
 import com.javaConnect.web.service.UserService;
 
 @Service
