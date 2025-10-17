@@ -15,7 +15,7 @@ public class CorsConfig {
 			public void addCorsMappings(CorsRegistry registry) {
 				
 				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:5173","https://javaconnectfrontend.onrender.com")
+						.allowedOrigins("http://localhost:5173","https://javacommunity.onrender.com")
 						.allowedMethods("GET", "POST", "PUT", "DELETE")
 						.allowCredentials(true);
 				
