@@ -31,8 +31,14 @@ public class AuthController {
     public ResponseEntity<ApiResponse<UserDTO>> register(@RequestBody User userDTO) {
         try {
     	UserDTO savedUser = userService.register(userDTO);
+    	if(savedUser !=null) {
         return ResponseEntity.ok(
             new ApiResponse<>(true, "User registered successfully", savedUser));
+    	}else {
+    		
+    	        return ResponseEntity.ok(
+    	            new ApiResponse<>(true, "User with this email already Present", savedUser));
+    	}
         }catch (Exception e) {
         	 return ResponseEntity.badRequest().body(
                      new ApiResponse<>(false, e.getMessage(), null));
