@@ -13,6 +13,7 @@ import com.javaConnect.web.dto.LoginRequest;
 import com.javaConnect.web.dto.UserDTO;
 import com.javaConnect.web.entity.User;
 import com.javaConnect.web.repository.UserRepository;
+import com.javaConnect.web.service.EmailService;
 import com.javaConnect.web.service.UserService;
 
 @Service
@@ -23,11 +24,14 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@Autowired
 	private JwtUtil jwtUtil;
 	@Override
-	public UserDTO register(User user) {
+	public UserDTO register(User user) throws IllegalAccessException {
 		
 		boolean ispresent = userRepo.existsByEmail(user.getEmail());
 		
@@ -37,8 +41,12 @@ public class UserServiceImpl implements UserService {
 		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
-		User saveduser =userRepo.save(user);
+		boolean isSuccess = emailService.sendEmail(user);
 		
+		if (!isSuccess) {
+		    throw new IllegalArgumentException("Failed to send email. Please enter a valid email address.");
+		}
+		User saveduser = userRepo.save(user);
 		UserDTO dto = new UserDTO();
 		dto.setId(saveduser.getId().toString());
 		dto.setEmail(saveduser.getEmail());

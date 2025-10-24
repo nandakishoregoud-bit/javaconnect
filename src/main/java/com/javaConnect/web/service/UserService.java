@@ -9,7 +9,7 @@ import com.javaConnect.web.entity.User;
 
 public interface UserService {
 
-	UserDTO register(User user);
+	UserDTO register(User user) throws IllegalAccessException;
 
 	List<UserDTO> getAllUsers();
 

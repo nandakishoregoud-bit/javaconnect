@@ -29,9 +29,14 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserDTO>> register(@RequestBody User userDTO) {
-        UserDTO savedUser = userService.register(userDTO);
+        try {
+    	UserDTO savedUser = userService.register(userDTO);
         return ResponseEntity.ok(
             new ApiResponse<>(true, "User registered successfully", savedUser));
+        }catch (Exception e) {
+        	 return ResponseEntity.badRequest().body(
+                     new ApiResponse<>(false, e.getMessage(), null));
+		}
     }
 
     @PostMapping("/login")
