@@ -41,11 +41,14 @@ public class UserServiceImpl implements UserService {
 		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
-		boolean isSuccess = emailService.sendEmail(user);
+		/*
+		 * boolean isSuccess = emailService.sendEmail(user);
+		 * 
+		 * if (!isSuccess) { throw new
+		 * IllegalArgumentException("Failed to send email. Please enter a valid email address."
+		 * ); }
+		 */
 		
-		if (!isSuccess) {
-		    throw new IllegalArgumentException("Failed to send email. Please enter a valid email address.");
-		}
 		User saveduser = userRepo.save(user);
 		UserDTO dto = new UserDTO();
 		dto.setId(saveduser.getId().toString());
