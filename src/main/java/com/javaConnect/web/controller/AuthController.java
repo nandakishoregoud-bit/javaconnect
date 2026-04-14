@@ -30,6 +30,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserDTO>> register(@RequestBody User userDTO) {
         try {
+			System.out.println(userDTO);
     	UserDTO savedUser = userService.register(userDTO);
     	if(savedUser !=null) {
         return ResponseEntity.ok(
@@ -37,7 +38,7 @@ public class AuthController {
     	}else {
     		
     	        return ResponseEntity.ok(
-    	            new ApiResponse<>(true, "User with this email already Present", savedUser));
+    	            new ApiResponse<>(false, "User with this email already Present", savedUser));
     	}
         }catch (Exception e) {
         	 return ResponseEntity.badRequest().body(
