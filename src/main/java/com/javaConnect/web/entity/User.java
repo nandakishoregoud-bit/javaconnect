@@ -59,5 +59,15 @@ public class User {
 	public void setBlocked(boolean isBlocked) {
 		this.isBlocked = isBlocked;
 	}
+
+	@Override
+public String toString() {
+    return "User{" +
+            "id=" + id +
+            ", userName='" + userName + '\'' +
+            ", email='" + email + '\'' +
+            ", isBlocked=" + isBlocked +
+            '}';
+}
 	
 }
